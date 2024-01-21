@@ -93,11 +93,11 @@ import { getPageData, getUser } from "./api/index.js";
 
     pagination.innerHTML = `${
       page > 1
-        ? `<button id="prevBtn"><i class="fa-solid fa-arrow-left" style="margin-right:5px"></i>Previous</button>`
+        ? `<button id="prevBtn"><i class="fa-solid fa-arrow-left"></i></button>`
         : ""
     }${advancedPaginationButtons}${
       page < totalPages
-        ? `<button id="nextBtn">Next<i class="fa-solid fa-arrow-right" style="margin-left:5px"></i></button>`
+        ? `<button id="nextBtn"><i class="fa-solid fa-arrow-right"></i></button>`
         : ""
     }`;
   }
@@ -168,7 +168,7 @@ import { getPageData, getUser } from "./api/index.js";
             <div class="user__repos__repo--footer">
             ${
               repo.language
-                ? `<span style="font-weight:600">Lang:${repo.language}</span>`
+                ? `<div style="font-weight:600;margin-right:10px;"><span style="margin-right:3px;">Lang:</span>${repo.language}</div>`
                 : ""
             }
             <span>${formatDate(repo.updated_at)}</span>
