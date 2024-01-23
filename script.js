@@ -2,6 +2,7 @@ import {
   formatDate,
   advancedPagination,
   displayLoader,
+  displayErrorMessage,
 } from "./scripts/helper.js";
 import { getPageData, getUser } from "./api/index.js";
 
@@ -28,7 +29,7 @@ import { getPageData, getUser } from "./api/index.js";
 
       const data = await res.json();
       if (res.status !== 200) {
-        throw new Error("User not found");
+        throw new Error("User not found!!");
       }
       displayLoader("none");
       page = 1;
@@ -84,7 +85,7 @@ import { getPageData, getUser } from "./api/index.js";
       displayPagination();
     } catch (err) {
       displayLoader("none");
-      fetchErrorMessage(err.message);
+      displayErrorMessage(err.message);
     }
   }
   function displayPagination() {
@@ -137,6 +138,10 @@ import { getPageData, getUser } from "./api/index.js";
   }
   function displayUserRepos(repos) {
     userRepo.innerHTML = "";
+    if (repos.length == 0) {
+      userRepo.innerHTML = `No repository made to display!!`;
+      return;
+    }
     repos.forEach((repo) => {
       let topicsHTML = "";
       if (repo.topics.length > 0) {
